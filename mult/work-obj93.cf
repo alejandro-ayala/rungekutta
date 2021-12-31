@@ -1,0 +1,7 @@
+v 4
+file . "simulacion.vhd" "06857cea99c782a7cd1f3a10017ba2640ba1330c" "20211230202521.814":
+  entity simulacion at 28( 936) + 0 on 13;
+  architecture behavior of simulacion at 38( 1161) + 0 on 14;
+file . "main.vhd" "3c9de7743034d8862a7cd98bb96bad862cde7cb5" "20211230202437.539":
+  entity main at 20( 480) + 0 on 11;
+  architecture behavioral of main at 37( 994) + 0 on 12;

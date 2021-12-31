@@ -1,0 +1,46 @@
+$date
+  Thu Dec 30 21:25:58 2021
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$scope module standard $end
+$upscope $end
+$scope module std_logic_1164 $end
+$upscope $end
+$scope module simulacion $end
+$var reg 8 ! y[7:0] $end
+$var reg 8 " x[7:0] $end
+$var reg 16 # p[15:0] $end
+$scope module uut $end
+$var reg 8 $ y[7:0] $end
+$var reg 8 % x[7:0] $end
+$var reg 16 & p[15:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+b00000000 !
+b00000000 "
+b0000000000000000 #
+b00000000 $
+b00000000 %
+b0000000000000000 &
+#500000000
+#1000000000
+b00101010 !
+b00101010 "
+b0000011011100100 #
+b00101010 $
+b00101010 %
+b0000011011100100 &
+#1500000000
+b00010110 !
+b00010110 "
+b0000000111100100 #
+b00010110 $
+b00010110 %
+b0000000111100100 &
