@@ -1,73 +1,67 @@
---------------------------------------------------------------------------------
--- Company: 
--- Engineer:
---
--- Create Date:   17:22:58 10/18/2015
--- Design Name:   
--- Module Name:   C:/Users/Javier Armenta/Documents/Xilinx_proyectos/Multiplicador/simulacion.vhd
--- Project Name:  Multiplicador
--- Target Device:  
--- Tool versions:  
--- Description:   
--- 
--- VHDL Test Bench Created by ISE for module: main
--- 
--- Dependencies:
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
---
--- Notes: 
--- This testbench has been automatically generated using types std_logic and
--- std_logic_vector for the ports of the unit under test.  Xilinx recommends
--- that these types always be used for the top-level I/O of a design in order
--- to guarantee that the testbench will bind correctly to the post-implementation 
--- simulation model.
---------------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
- 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---USE ieee.numeric_std.ALL;
- 
-ENTITY simulacion IS
-END simulacion;
- 
-ARCHITECTURE behavior OF simulacion IS 
- 
-    -- Component Declaration for the Unit Under Test (UUT)
- 
-    COMPONENT main
-    PORT(
-         Y : IN  std_logic_vector(7 downto 0);
-         X : IN  std_logic_vector(7 downto 0);
-         P : OUT  std_logic_vector(15 downto 0)
-        );
-    END COMPONENT;
-    
+use ieee.numeric_std.all;
 
-   --Inputs
-   signal Y : std_logic_vector(7 downto 0) := (others => '0');
-   signal X : std_logic_vector(7 downto 0) := (others => '0');
+entity Multiplier32Bits_testbench is
+end Multiplier32Bits_testbench;
 
- 	--Outputs
-   signal P : std_logic_vector(15 downto 0);
-   -- No clocks detected in port list. Replace <clock> below with 
-   -- appropriate port name 
- 
- --  constant <clock>_period : time := 10 ns;
- 
-BEGIN
- 
-	-- Instantiate the Unit Under Test (UUT)
-   uut: main PORT MAP (
-          Y => Y,
-          X => X,
-          P => P
-        );
+architecture behavior of Multiplier32Bits_testbench is
+    component Multiplier32Bits is
+    port(
+        CLK: in std_logic;
+        A,B: in signed(31 downto 0);
+        R: out signed(31 downto 0));
+    end component;
+    signal signal_clk     : std_logic;
+    signal signal_A     : signed (31 downto 0);
+    signal signal_B     : signed (31 downto 0);
+    signal signal_result  : signed (31 downto 0);
+    constant clk_period : time := 10 ns;
+begin
+    uut: Multiplier32Bits port map (
+        CLK      => signal_clk,
+        A => signal_A,
+        B => signal_B,
+        R    => signal_result
+    );
 
- Y <= "00000000" after 500 ns, "00101010" after 1000 ns, "00010110" after 1500 ns;
- X <= "00000000" after 500 ns, "00101010" after 1000 ns, "00010110" after 1500 ns;
-END;
+   -- Clock process definitions
+   Clk_process :process
+   begin
+        signal_clk <= '0';
+        wait for clk_period/2;
+        signal_clk <= '1';
+        wait for clk_period/2;
+   end process;
+
+    stim_proc: process
+    begin
+        wait until rising_edge(signal_clk);
+        wait for 20 ns;
+        signal_A <= "00000000000000000000000000000001";
+        signal_B <= "00000000000000000000000000000001";
+        wait for 10 ns;
+        signal_A <= "00000000000000000000000000000100";
+        signal_B <= "00000000000000000000000000000010";
+        wait for 10 ns;
+        signal_A <= "00000000000000000000000000000101";
+        signal_B <= "00000000000000000000000000000100";
+        wait for 10 ns;
+        signal_A <= "00000000000000000000000000001000";
+        signal_B <= "00000000000000000000000000001000";
+        wait for 10 ns;
+        signal_A <= "00000000000000000000000010001000";
+        signal_B <= "00000000000000000000000000001001";
+        wait for 10 ns;
+        signal_A <= "00000000000000000000000000001000";
+        signal_B <= "00000000000000000000000000001000";
+        wait for 10 ns;
+        signal_A <= "11111111111111111111111111111111";
+        signal_B <= "11111111111111111111111111111110";
+        wait for 10 ns;
+        signal_A <= "11111111111111111111111111111111";
+        signal_B <= "00000000000000000000000000000001";
+        report "Multiplier testbench finished";
+        wait;
+    end process;
+end;
