@@ -10,7 +10,7 @@ entity full_adder is
         operand1 : in  signed(N-1 downto 0);
         operand2 : in  signed(N-1 downto 0);
         carry    : out  std_logic;
-        add_result   : out signed(N-1 downto 0));
+        result   : out signed(N-1 downto 0));
 end;
 
 architecture behavioral of full_adder is
@@ -27,7 +27,7 @@ architecture behavioral of full_adder is
             --result <= std_logic_vector(signal_result);
             temporal <= ('0' & operand1) + ('0' & operand2);
             carry <= temporal(32);
-            add_result <= temporal(31 downto 0);
+            result <= temporal(31 downto 0);
 
         end if;
    end process r_process; 
