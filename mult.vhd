@@ -5,30 +5,24 @@ use ieee.numeric_std.all;
 entity Multiplier32Bits is
     port(
         CLK: in std_logic;
-        A,B: in signed(31 downto 0);
-        R: out signed(31 downto 0)
+        operand1,operand2: in signed(31 downto 0);
+        mult_result: out signed(63 downto 0)
     );
 end Multiplier32Bits;
 
 architecture Behavioral of Multiplier32Bits is
-signal next_state: signed(63 downto 0);
-signal state: signed(31 downto 0);
+signal temporal: signed(63 downto 0);
 
 begin
 
-    Sequential: process(CLK,state,next_state)
+    mult_process: process(CLK,temporal)
     begin
-        if CLK'event and CLK = '1' then
-            state <= next_state(61 downto 30);
-        else
-            state <= state;
-        end if;
-    end process Sequential;
-
+        if(rising_edge(clk)) then
     --Combinational part
-        next_state <= (A*B);
-
+            temporal <= (operand1*operand2);
     --Output assigment
-    R <= state;
+            mult_result <= temporal;
+        end if;
+    end process mult_process;
 
 end Behavioral;

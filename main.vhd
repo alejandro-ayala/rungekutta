@@ -9,7 +9,9 @@ entity runge_kutta_algorith is
         clk      : in  std_logic;
         operand1 : in  signed(N-1 downto 0);
         operand2 : in  signed(N-1 downto 0);
-        result_alg   : out signed(N-1 downto 0));
+        operand3 : in  signed(N-1 downto 0);
+        operand4 : in  signed(N-1 downto 0);
+        result_alg   : out signed(2*N-1 downto 0));
 end;
 
 architecture structural of runge_kutta_algorith is
@@ -24,7 +26,7 @@ component full_adder is
         operand1 : in  signed(N-1 downto 0);
         operand2 : in  signed(N-1 downto 0);
         carry    : out  std_logic;
-        result   : out signed(N-1 downto 0)
+        add_result   : out signed(N-1 downto 0)
     );
 end component;
 
@@ -32,19 +34,19 @@ end component;
 component Multiplier32Bits is
     port(
         CLK: in std_logic;
-        A,B: in signed(31 downto 0);
-        R: out signed(31 downto 0)
+        operand1,operand2: in signed(31 downto 0);
+        mult_result: out signed(63 downto 0)
     );
 end component;
 
 signal signal_carry: std_logic;
 signal signal_sum: signed(31 downto 0);
-signal signal_mult: signed(31 downto 0);
-signal signal_temporal     : signed (31 downto 0);
+signal signal_mult: signed(63 downto 0);
+signal signal_temporal     : signed (63 downto 0);
 
 begin
-  sum: full_adder port map (clk => clk, operand1 => operand1,operand2 => operand2, carry => signal_carry,result => signal_sum);
-  mult: Multiplier32Bits port map (CLK => clk, A => operand1,B => operand2,R => signal_mult);
+  sum: full_adder port map (clk => clk, operand1 => operand1,operand2 => operand2, carry => signal_carry,add_result => signal_sum);
+  mult: Multiplier32Bits port map (CLK => clk, operand1 => operand3,operand2 => operand4,mult_result => signal_mult);
 
 
     main_process : process(clk)

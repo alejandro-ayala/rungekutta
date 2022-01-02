@@ -18,7 +18,7 @@ architecture behavioral of full_adder is
     
     begin
 
-    r_process : process(clk)
+    sum_process : process(clk)
     begin
 
         if(rising_edge(clk)) then
@@ -30,5 +30,5 @@ architecture behavioral of full_adder is
             add_result <= temporal(31 downto 0);
 
         end if;
-   end process r_process; 
+   end process sum_process; 
 end;
