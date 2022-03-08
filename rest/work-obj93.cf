@@ -1,0 +1,7 @@
+v 4
+file . "resta_tb.vhd" "90b81b3d082218c1ca93b4b78c6997ef047c0cda" "20220113165750.257":
+  entity sub_testbench at 1( 0) + 0 on 13;
+  architecture behavior of sub_testbench at 8( 114) + 0 on 14;
+file . "resta.vhd" "a4d193888e12bdbaa0bdc5a6c4c5b4e6e9a33da1" "20220113165747.337":
+  entity sub at 1( 0) + 0 on 11;
+  architecture behavioral of sub at 15( 319) + 0 on 12;

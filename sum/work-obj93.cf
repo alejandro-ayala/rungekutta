@@ -1,7 +1,0 @@
-v 4
-file . "sumador_testbench.vhd" "243db85ff57588f2a5a6e339a59fde5236c1a65c" "20211231121443.047":
-  entity full_adder_testbench at 1( 0) + 0 on 71;
-  architecture behavior of full_adder_testbench at 8( 128) + 0 on 72;
-file . "sumador.vhd" "2151c978220cb989cf87a1d52807616eec5841ca" "20211231121440.039":
-  entity full_adder at 1( 0) + 0 on 69;
-  architecture behavioral of full_adder at 16( 361) + 0 on 70;

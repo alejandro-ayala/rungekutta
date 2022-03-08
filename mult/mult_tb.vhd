@@ -10,19 +10,19 @@ architecture behavior of Multiplier32Bits_testbench is
     port(
         CLK: in std_logic;
         A,B: in signed(31 downto 0);
-        R: out signed(31 downto 0));
+        mult_result: out signed(63 downto 0));
     end component;
     signal signal_clk     : std_logic;
     signal signal_A     : signed (31 downto 0);
     signal signal_B     : signed (31 downto 0);
-    signal signal_result  : signed (31 downto 0);
+    signal signal_result  : signed (63 downto 0);
     constant clk_period : time := 10 ns;
 begin
     uut: Multiplier32Bits port map (
         CLK      => signal_clk,
         A => signal_A,
         B => signal_B,
-        R    => signal_result
+        mult_result    => signal_result
     );
 
    -- Clock process definitions
